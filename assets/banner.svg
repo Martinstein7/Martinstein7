@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#02040a"/>
+      <stop offset="0.55" stop-color="#061433"/>
+      <stop offset="1" stop-color="#0a1f4d"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5fd4ff"/>
+      <stop offset="0.5" stop-color="#1e6fff"/>
+      <stop offset="1" stop-color="#7a2cff"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a1f4d"/>
+      <stop offset="1" stop-color="#010207"/>
+    </linearGradient>
+    <linearGradient id="wing" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1e6fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2f8bff"/>
+    </linearGradient>
+    <linearGradient id="wingR" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#1e6fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2f8bff"/>
+    </linearGradient>
+    <mask id="sunCut">
+      <rect width="1200" height="400" fill="#fff"/>
+      <g fill="#000">
+        <rect x="700" y="140" width="400" height="3"/>
+        <rect x="700" y="156" width="400" height="5"/>
+        <rect x="700" y="172" width="400" height="7"/>
+        <rect x="700" y="188" width="400" height="9"/>
+        <rect x="700" y="204" width="400" height="11"/>
+      </g>
+    </mask>
+    <clipPath id="floorClip"><rect x="0" y="270" width="1200" height="130"/></clipPath>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bigGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="#000" fill-opacity="0.22"/>
+    </pattern>
+    <style>
+      .mono { font-family: 'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace; }
+      .grid line { stroke: #2f8bff; stroke-opacity: .55; stroke-width: 1.2; }
+      .hscroll { animation: scroll 2.4s linear infinite; }
+      @keyframes scroll { from { transform: translateY(0); } to { transform: translateY(26px); } }
+      .blink { animation: blink 1s steps(1) infinite; }
+      @keyframes blink { 50% { opacity: 0; } }
+      .twinkle { animation: tw 3s ease-in-out infinite; }
+      .twinkle.d2 { animation-delay: 1s; } .twinkle.d3 { animation-delay: 2s; }
+      @keyframes tw { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+      .win { animation: tw 4s ease-in-out infinite; }
+      .glitch { animation: glitch 6s steps(1) infinite; }
+      @keyframes glitch {
+        0%,93%,100% { transform: translate(0,0); opacity: 1; }
+        94% { transform: translate(-3px,1px); opacity: .8; }
+        96% { transform: translate(3px,-1px); opacity: .9; }
+        98% { transform: translate(-1px,0); }
+      }
+      .ghost { animation: ghost 6s steps(1) infinite; opacity: 0; }
+      @keyframes ghost { 0%,93%,99%,100% { opacity: 0; } 94%,96% { opacity: .7; } }
+      .type1 { animation: type 1.2s steps(14) .3s both; }
+      .type2 { animation: type 1.4s steps(24) 2.4s both; }
+      @keyframes type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+      .fade { animation: fade .4s ease 1.7s both; }
+      .fade2 { animation: fade .4s ease 4s both; }
+      @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+  </defs>
+
+  <!-- sky -->
+  <rect width="1200" height="400" fill="url(#sky)"/>
+
+  <!-- stars -->
+  <g fill="#bfe3ff">
+    <circle class="twinkle" cx="80" cy="40" r="1.2"/>
+    <circle class="twinkle d2" cx="210" cy="90" r="1"/>
+    <circle class="twinkle d3" cx="420" cy="30" r="1.4"/>
+    <circle class="twinkle" cx="560" cy="70" r="1"/>
+    <circle class="twinkle d2" cx="650" cy="25" r="1.2"/>
+    <circle class="twinkle d3" cx="760" cy="55" r="1"/>
+    <circle class="twinkle" cx="1010" cy="35" r="1.3"/>
+    <circle class="twinkle d2" cx="1130" cy="80" r="1"/>
+    <circle class="twinkle d3" cx="1170" cy="22" r="1.1"/>
+    <circle class="twinkle" cx="330" cy="120" r=".9"/>
+  </g>
+
+  <!-- synthwave sun -->
+  <circle cx="900" cy="150" r="110" fill="#1e6fff" opacity=".35" filter="url(#bigGlow)"/>
+  <circle cx="900" cy="150" r="95" fill="url(#sun)" mask="url(#sunCut)"/>
+
+  <!-- skyline (night city) -->
+  <g fill="#01030a">
+    <path d="M560 270 V215 h30 v-25 h18 v25 h22 V170 h40 v100 Z"/>
+    <path d="M660 270 V200 h26 v-40 h6 v-18 h4 v18 h6 v40 h26 v70 Z"/>
+    <path d="M735 270 V230 h40 V185 h34 v85 Z"/>
+    <path d="M805 270 V205 h22 v-30 l18 -14 l18 14 v30 h22 v65 Z"/>
+    <path d="M885 270 V225 h50 v45 Z"/>
+    <path d="M930 270 V150 h38 v-12 h10 v12 h12 v120 Z"/>
+    <path d="M985 270 V195 h46 v75 Z"/>
+    <path d="M1025 270 V215 h30 v-35 h28 v90 Z"/>
+    <path d="M1080 270 V175 h44 v-20 h6 v20 h10 v95 Z"/>
+    <path d="M1135 270 V220 h65 v50 Z"/>
+  </g>
+  <g fill="#3fa9ff">
+    <rect class="win" x="640" y="185" width="4" height="5"/>
+    <rect class="win" x="652" y="210" width="4" height="5" style="animation-delay:1.3s"/>
+    <rect class="win" x="676" y="215" width="4" height="5" style="animation-delay:.6s"/>
+    <rect class="win" x="790" y="200" width="4" height="5" style="animation-delay:2s"/>
+    <rect class="win" x="945" y="170" width="4" height="5" style="animation-delay:.2s"/>
+    <rect class="win" x="958" y="200" width="4" height="5" style="animation-delay:2.6s"/>
+    <rect class="win" x="1000" y="215" width="4" height="5" style="animation-delay:1.1s"/>
+    <rect class="win" x="1095" y="195" width="4" height="5" style="animation-delay:.9s"/>
+    <rect class="win" x="1110" y="230" width="4" height="5" style="animation-delay:1.8s"/>
+  </g>
+  <!-- antenna beacon -->
+  <circle class="blink" cx="694" cy="142" r="2.5" fill="#ff2e88" filter="url(#glow)"/>
+
+  <!-- floor / grid -->
+  <rect y="270" width="1200" height="130" fill="url(#floor)"/>
+  <line x1="0" y1="270" x2="1200" y2="270" stroke="#5fd4ff" stroke-width="2" filter="url(#glow)"/>
+  <g class="grid" clip-path="url(#floorClip)">
+    <g>
+      <line x1="600" y1="270" x2="-600" y2="400"/>
+      <line x1="600" y1="270" x2="-300" y2="400"/>
+      <line x1="600" y1="270" x2="0" y2="400"/>
+      <line x1="600" y1="270" x2="200" y2="400"/>
+      <line x1="600" y1="270" x2="400" y2="400"/>
+      <line x1="600" y1="270" x2="600" y2="400"/>
+      <line x1="600" y1="270" x2="800" y2="400"/>
+      <line x1="600" y1="270" x2="1000" y2="400"/>
+      <line x1="600" y1="270" x2="1200" y2="400"/>
+      <line x1="600" y1="270" x2="1500" y2="400"/>
+      <line x1="600" y1="270" x2="1800" y2="400"/>
+    </g>
+    <g class="hscroll">
+      <line x1="0" y1="252" x2="1200" y2="252"/>
+      <line x1="0" y1="278" x2="1200" y2="278"/>
+      <line x1="0" y1="304" x2="1200" y2="304"/>
+      <line x1="0" y1="330" x2="1200" y2="330"/>
+      <line x1="0" y1="356" x2="1200" y2="356"/>
+      <line x1="0" y1="382" x2="1200" y2="382"/>
+    </g>
+  </g>
+
+  <!-- terminal window -->
+  <g transform="translate(60 70)">
+    <rect width="470" height="230" rx="10" fill="#050b1a" fill-opacity=".88" stroke="#2f8bff" stroke-opacity=".7"/>
+    <rect width="470" height="30" rx="10" fill="#0b1630"/>
+    <rect y="20" width="470" height="10" fill="#0b1630"/>
+    <circle cx="20" cy="15" r="5" fill="#ff2e88"/>
+    <circle cx="38" cy="15" r="5" fill="#7a2cff"/>
+    <circle cx="56" cy="15" r="5" fill="#2f8bff"/>
+    <text x="235" y="20" text-anchor="middle" class="mono" font-size="12" fill="#6f8bb8">martins@bludhaven: ~</text>
+
+    <text x="22" y="64" class="mono type1" font-size="16" fill="#5fd4ff">❯ <tspan fill="#cfe6ff">whoami</tspan></text>
+
+    <g class="fade">
+      <text x="22" y="118" class="mono ghost" font-size="44" font-weight="700" fill="#ff2e88" transform="translate(3 0)">MWrt1nsDev</text>
+      <text x="22" y="118" class="mono glitch" font-size="44" font-weight="700" fill="#e8f3ff" filter="url(#glow)">MWrt1ns<tspan fill="#2f8bff">Dev</tspan></text>
+      <rect x="22" y="132" width="200" height="3" fill="#2f8bff" filter="url(#glow)"/>
+    </g>
+
+    <text x="22" y="170" class="mono type2" font-size="16" fill="#5fd4ff">❯ <tspan fill="#cfe6ff">cat role.txt</tspan></text>
+    <g class="fade2">
+      <text x="22" y="200" class="mono" font-size="16" fill="#9fb8de">Software Developer · Diadema, SP<tspan class="blink" fill="#2f8bff"> ▌</tspan></text>
+    </g>
+  </g>
+
+  <!-- wing emblem: code bracket with wings (original mark) -->
+  <g transform="translate(900 345)" filter="url(#glow)">
+    <path d="M-30 0 L-150 -16 L-120 -4 L-170 -2 L-120 6 L-140 14 Z" fill="url(#wing)"/>
+    <path d="M30 0 L150 -16 L120 -4 L170 -2 L120 6 L140 14 Z" fill="url(#wingR)"/>
+    <text x="0" y="8" text-anchor="middle" class="mono" font-size="24" font-weight="700" fill="#5fd4ff">&lt;/&gt;</text>
+  </g>
+
+  <!-- scanlines -->
+  <rect width="1200" height="400" fill="url(#scan)"/>
+</svg>
